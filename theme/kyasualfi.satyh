@@ -1,10 +1,10 @@
-%% arctic.satyh
+%% kyasualfi.satyh
 %%
 %% SLyDIFi theme file.
 %%
-%% This slide theme is heavily inspired by the iceberg.vim colorscheme.
-%% [iceberg.vim](https://github.com/cocopon/iceberg.vim): Copyright (c) 2014 cocopon <cocopon@me.com>
-%% https://github.com/cocopon/iceberg.vim/blob/master/colors/iceberg.vim
+%% This slide theme is heavily inspired by the arctic.satyh theme.
+%% [arctic.satyh](https://github.com/monaqa/slydifi/blob/master/src/theme/arctic.satyh): Copyright (c) 2021 comonaqa <mogassy@yahoo.co.jp>
+%% https://github.com/monaqa/slydifi/blob/master/src/theme/arctic.satyh
 
 @require: gr
 @require: annot
