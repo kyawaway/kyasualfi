@@ -1,0 +1,29 @@
+opam-version: "2.0"
+name: "kyasualfi"
+version: "0.0.1"
+synopsis: "kyasualfi"
+description: """kyasualfi"""
+
+maintainer: "Kento Takyu <kyawawa0216@gmail.com>"
+authors: "Kento Takyu <kyawawa0216@gmail.com>"
+license: "MIT"
+
+depends: [
+  "satysfi" { >= "0.0.10" & < "0.0.11" }
+  "satyrographos" { >= "0.0.2.6" & < "0.0.3" }
+
+  "satysfi-dist"
+  "satysfi-base"
+
+  "satysfi-figbox"
+  "satysfi-enumitem"
+  "satysfi-easytable"
+  "satysfi-colorbox"
+  "satysfi-bibyfi"
+  "satysfi-class-slydifi"
+  "satysfi-fonts-noto-sans"
+  "satysfi-fonts-noto-sans-cjk-jp"
+  "satysfi-fonts-noto-serif"
+  "satysfi-railway"
+  "satysfi-math"
+]
