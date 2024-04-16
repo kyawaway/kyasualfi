@@ -1,12 +1,11 @@
 @import: ../theme/kyasualfi
-@require: code-printer/code-printer
-@require: code-printer/code-theme
-@require: code-printer/code-syntax
-% @require: class-slydifi/theme/arctic-noto
+
 
 open FigBox
 open SlydifiOverlay
 open SlydifiThemeArctic
+open Derive
+open DeriveDSL
 
 let-inline ctx \cjk it =
   let ctx = ctx |> set-dominant-narrow-script Kana in
@@ -118,10 +117,36 @@ document '<
 }`
     );
     >
-    +frame{hogehoge}<
-    +p{
-      これはテストです。
+    +frame{導出木（`Derive`モジュール）}<
+    +centering{
+      ${
+        \proven!(
+          derive ${ \vdash A \wedge \paren {B \vee C} }
+          |> by { ${\wedge} I }
+          |> from [
+              assume ${ \vdash A };
+              derive ${ \vdash B \vee C }
+              |> by { ${\vee} I }
+              |> from [
+                assume ${ \vdash B };
+              ];
+          ]
+        )
       }
+      }
+    +code(CodeSyntax.satysfi)
+    (
+`${ \proven!(
+  derive ${ \vdash A \wedge \paren {B \vee C} }
+  |> by { ${\wedge} I }
+  |> from [
+      assume ${ \vdash A };
+      derive ${ \vdash B \vee C }
+      |> by { ${\vee} I }
+      |> from [
+        assume ${ \vdash B };
+      ]; ] }`
+);
     >
     +frame{hogehoge}<
     +p{
@@ -133,10 +158,10 @@ document '<
     +p{
       これはブロックのテストです．
       }
-    +block?:({これはブロックのテストです．}){
+    +block?:({\cjk{これはブロックのテストです．}}){
       これはブロックのテストです．
       }
-    +alertblock?:({alert block}){
+    +alertblock?:({\cjk{alert block}}){
       これはブロックのテストです．
       }
     +exampleblock?:({example block}){

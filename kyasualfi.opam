@@ -27,4 +27,5 @@ depends: [
   "satysfi-railway"
   "satysfi-math"
   "satysfi-code-printer"
+  "satysfi-derive"
 ]

@@ -23,6 +23,8 @@
 @require: code-printer/code-printer
 @require: code-printer/code-theme
 @require: code-printer/code-syntax
+@require: base/typeset/satysfi-it
+@require: derive/derive
 
 
 open Colorbox
