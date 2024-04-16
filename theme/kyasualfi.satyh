@@ -19,6 +19,11 @@
 @require: colorbox/colorbox
 @require: figbox/figbox
 @require: math
+@require: code
+@require: code-printer/code-printer
+@require: code-printer/code-theme
+@require: code-printer/code-syntax
+
 
 open Colorbox
 % open SlydifiOverlay
@@ -116,6 +121,7 @@ module SlydifiThemeArctic: sig
   direct +frame-nofooter : [int?; inline-text; block-text;] block-cmd
   direct +namedframe : [string; inline-text; block-text;] block-cmd
   direct +againframe : [int?; string] block-cmd
+  direct +centering : [inline-text] block-cmd
 
 % decoration commands
   direct \emph : [(int -> bool)?; inline-text] inline-cmd
@@ -145,6 +151,9 @@ module SlydifiThemeArctic: sig
   direct \footnote : [inline-text] inline-cmd
   direct \footnotetext : [string; inline-text] inline-cmd
   direct \footnotemark : [string] inline-cmd
+
+% code
+  direct +code : [CodePrinter.syntax; string] block-cmd
 
 % block
  direct +block : [inline-text?; string?; Colorbox.colorbox-option list?; inline-text] block-cmd
@@ -565,6 +574,10 @@ end = struct
       +SlydifiScheme.againframe(name);
     >
 
+  let-block ctx +centering it =
+    line-break true true ctx
+     (inline-fil ++ read-inline ctx it ++ inline-fil)
+
 % inline commands
 
   let-inline ctx \emph ?:dcf it =
@@ -898,6 +911,20 @@ end = struct
         line-break false false ctx (read-inline ctx {#it-num; #it;} ++ inline-fil)
     in
       FootnoteScheme.main ctx None ibf bbf
+
+
+%% code 
+
+  let-block ctx +code lang code = 
+    let size = 
+      (get-font-size ctx) *' 0.85
+    in
+    read-block ctx '< 
+    +code-printer ?:(
+      CodePrinter.make-config lang CodeTheme.tokyo-night
+      |> CodePrinter.set-basic-font-size size
+    )(code);
+    >
 
 
 %% block 

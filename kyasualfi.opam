@@ -26,4 +26,5 @@ depends: [
   "satysfi-fonts-noto-serif"
   "satysfi-railway"
   "satysfi-math"
+  "satysfi-code-printer"
 ]

@@ -1,5 +1,7 @@
 @import: ../theme/kyasualfi
-
+@require: code-printer/code-printer
+@require: code-printer/code-theme
+@require: code-printer/code-syntax
 % @require: class-slydifi/theme/arctic-noto
 
 open FigBox
@@ -33,7 +35,8 @@ document '<
       } 
       +itemize<
         +item{`opam install ./kyasualfi.opam` to install packages}<>
-        +item{`make` to build}<>
+        +item{`make` to build}<
+        >
         +thusitem{`slide.pdf` should be generated}<>
       >
     >
@@ -97,47 +100,52 @@ document '<
     >
   >
 
-    +frame{hogehoge}<
+    +frame{数式}<
     +p{
-      これはテストです。
-      }
-
-
+      数式は \LaTeX; と同様に
+    }
+    +centering{
+      ${E = m c^2}，${F = G \frac{m_1 m_2}{r^2}}， ${x^x = e^{x \log x}}
+    }
+    +p{
+      といった要領で書くことができます.
+    }
+    +code(CodeSyntax.satysfi)
+    (
+`+centering{
+  ${E = m c^2}，${F = G \frac{m_1 m_2}{r^2}}， 
+  ${x^x = e^{x \log x}}
+}`
+    );
     >
     +frame{hogehoge}<
     +p{
       これはテストです。
       }
-
-
     >
     +frame{hogehoge}<
     +p{
       これはテストです。
       }
+      +quote<>
     >
-    +frame{hogehoge}<
+    +frame{`+block`コマンド}<
     +p{
-      これはテストです。
+      これはブロックのテストです．
       }
-    >
-    +frame{hogehoge}<
-    +p{
-      これはテストです。
-      }
-    +block?:({block}){
-      数式も入れられます．
+    +block?:({これはブロックのテストです．}){
+      これはブロックのテストです．
       }
     +alertblock?:({alert block}){
-      数式も入れられます．
+      これはブロックのテストです．
       }
     +exampleblock?:({example block}){
-      数式も入れられます．
+      これはブロックのテストです．
       }
     >
-    +frame{hogehoge}<
+    +frame{hogehgoe}<
     +p{
-      これはテストです。
+      これは定義ブロックのテストです。
       }
     +defn?:({タイトル}){
       数式も入れられます．
