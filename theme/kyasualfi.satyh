@@ -231,7 +231,7 @@ end = struct
       color-normal-fg = Color.of-css `#3c372d`;
       color-normal-bg = Color.of-css `#fffefa`;
       color-block-fg = Color.of-css `#462d28`;
-      color-block-bg = Color.of-css `#ebdcb9`;
+      color-block-bg = Color.of-css `#fffae6`;
       color-alert-fg = Color.of-css `#732346`;
       color-alert-bg = Color.of-css `#e5c3be`;
       color-example-fg = Color.of-css `#5a7323`;
@@ -908,28 +908,31 @@ end = struct
           | None ->   {}
           | Some(title) -> {#title;}
     in
-    %let bctx = ctx |> config#font-block-normal |> set-text-color config#color-normal-fg in
     let user-opts = match opts with
           | None -> []
           | Some(uos) -> uos in
-    let opts = List.append user-opts
-          [ 
-           lefttitle 10pt; righttitle 10pt; toptitle 3.5pt; bottomtitle 3.5pt;
-           colframe (Color.of-css color-frame-text);
-           coltitle (Color.of-css color-title-text);
-           fonttitle [bold; font-size 24pt];
-           left 10pt; right 10pt; top 10pt; bottom 10pt;
-           colback  (Color.of-css color-bg-text);
-          ]
+    let bctx =
+      let size = get-font-size ctx in
+      set-font-size (size *' 0.8) ctx
     in
-    read-block ctx '<
+    let opts = List.append user-opts
+      [ 
+       lefttitle 10pt; righttitle 10pt; toptitle 3.5pt; bottomtitle 3.5pt;
+       colframe (Color.of-css color-frame-text);
+       coltitle (Color.of-css color-title-text);
+       fonttitle [bold; font-size 24pt];
+       left 10pt; right 10pt; top 10pt; bottom 10pt;
+       colback  (Color.of-css color-bg-text);
+      ]
+    in
+    read-block bctx '<
       +colorbox 
         (opts)
         ?:(ib-title)
         <+p{#blk;}>
     >
   
-  let-block ctx +block = make-block ctx `#3c372d` `#ebdcb9` `#fffefa` 
+  let-block ctx +block = make-block ctx `#3c372d` `#fffae6` `#fffefa` 
   let-block ctx +textblock = make-block ctx `#fffefa` `#fffefa` `#3c372d`
   let-block ctx +alertblock = make-block ctx `#732346` `#e5c3be` `#fffefa`
   let-block ctx +exampleblock = make-block ctx `#5a7323` `#e1f0c8` `#fffefa`
@@ -953,13 +956,21 @@ end = struct
     let user-opts = match opts with
           | None -> []
           | Some(uos) -> uos in
-    let opts = List.append user-opts
-          [ lefttitle 10pt; righttitle 10pt; toptitle 2.5pt; bottomtitle 2.5pt;
-          fonttitle [bold];
-          left 10pt; right 10pt; top 10pt;bottom 10pt;
-          ]
+    let bctx =
+      let size = get-font-size ctx in
+      set-font-size (size *' 0.8) ctx
     in
-    read-block ctx '<
+    let opts = List.append user-opts
+      [ 
+        lefttitle 10pt; righttitle 10pt; toptitle 2.5pt; bottomtitle 2.5pt;
+        fonttitle [bold];
+        colframe (Color.of-css `#3c372d`);
+        coltitle (Color.of-css `#fffefa`);
+        left 10pt; right 10pt; top 10pt;bottom 10pt;
+        colback (Color.of-css `#fffae6`);
+      ]
+    in
+    read-block bctx '<
       +colorbox 
         (opts)
         ?:(ib-title)
@@ -971,6 +982,7 @@ end = struct
   let-block ctx +thm = make-theorem ctx `定理`
   let-block ctx +cor = make-theorem ctx `系`
   let-block ctx +lem = make-theorem ctx `補題`
+
 
 
 end
