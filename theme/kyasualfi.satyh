@@ -31,7 +31,7 @@ open Colorbox
 % open SlydifiOverlay
 
 
-type arctic-config = (|
+type kyasualfi-config = (|
   %% font
   font-normal : context -> context;
   font-bold : context -> context;
@@ -81,35 +81,35 @@ type arctic-config = (|
   length-frame-footer-ymargin: length;
 |)
 
-module SlydifiThemeArctic: sig
+module SlydifiThemeKyasualfi: sig
 
   val layout: frame-layout
   val document: block-text -> document
 
 % config
 
-  val default-config: arctic-config
-  val config: arctic-config SlydifiParam.t
-  direct +set-config : [arctic-config] block-cmd
-  direct \set-config : [arctic-config] inline-cmd
-  direct +with-config : [arctic-config; block-text] block-cmd
-  direct \with-config : [arctic-config; inline-text] inline-cmd
+  val default-config: kyasualfi-config
+  val config: kyasualfi-config SlydifiParam.t
+  direct +set-config : [kyasualfi-config] block-cmd
+  direct \set-config : [kyasualfi-config] inline-cmd
+  direct +with-config : [kyasualfi-config; block-text] block-cmd
+  direct \with-config : [kyasualfi-config; inline-text] inline-cmd
 
 % frames
   %% スライドマスター。
-  val frame-master: arctic-config -> unit Frame.frame
+  val frame-master: kyasualfi-config -> unit Frame.frame
   %% ページ番号の付いたスライドマスター。
-  val frame-master-with-footer: arctic-config -> unit Frame.frame
+  val frame-master-with-footer: kyasualfi-config -> unit Frame.frame
   %% スライド全体のタイトルフレーム。
   %% title: スライドのタイトル
   %% title: スライドのタイトル
-  val frame-slide-title: arctic-config ->
+  val frame-slide-title: kyasualfi-config ->
     ((| title: inline-text list; author: inline-text list; date: inline-text list|))
       Frame.frame
   %% セクションフレーム。
-  val frame-section-title: arctic-config -> ((| title: inline-text list; |)) Frame.frame
+  val frame-section-title: kyasualfi-config -> ((| title: inline-text list; |)) Frame.frame
   %% タイトルフレーム。
-  val frame-normal: arctic-config -> ((| title: inline-text; inner: block-text; footer: bool |)) Frame.frame
+  val frame-normal: kyasualfi-config -> ((| title: inline-text; inner: block-text; footer: bool |)) Frame.frame
 
 % frame commands
   %% frame-slide-title に従ってタイトルスライドを生成する。
@@ -1015,4 +1015,4 @@ end = struct
 
 end
 
-let document = SlydifiThemeArctic.document
+let document = SlydifiThemeKyasualfi.document
