@@ -7,10 +7,6 @@ open SlydifiThemeArctic
 open Derive
 open DeriveDSL
 
-let-inline ctx \cjk it =
-  let ctx = ctx |> set-dominant-narrow-script Kana in
-  read-inline ctx it
-
 in
 
 document '<
@@ -21,35 +17,35 @@ document '<
     date = {| 2021年6月6日 |};
   |);
 
-    +frame{How to Setup}<
-      +p{
-        \textbf{Preparation}
-      }
-      +listing{
-        * Fork this repository
-        * install \SATySFi; satyrographos
-      }
-      +p{
-        \textbf{Build}
-      } 
-      +itemize<
-        +item{`opam install ./kyasualfi.opam` to install packages}<>
-        +item{`make` to build}<
-        >
-        +thusitem{`slide.pdf` should be generated}<>
+  +frame{How to Setup}<
+    +p{
+      \textbf{Preparation}
+    }
+    +listing{
+      * Fork this repository
+      * install \SATySFi; satyrographos
+    }
+    +p{
+      \textbf{Build}
+    } 
+    +itemize<
+      +item{`opam install ./kyasualfi.opam` to install packages}<>
+      +item{`make` to build}<
       >
+      +thusitem{`slide.pdf` should be generated}<>
     >
-    
-    +frame{How to Use}<
-      +p{
-        \textbf{基本的には，普通の\SLyDIFi;と同じです．}
-      }
-      +listing{
-        * または，これとslide.texを眺めてください．
-        * 要望があれば，ドキュメントを追加します．
-          ** 要望は，issueか\@kyawawayへお願いします．
-      }
-    >
+  >
+  
+  +frame{How to Use}<
+    +p{
+      \textbf{基本的には，普通の\SLyDIFi;と同じです．}
+    }
+    +listing{
+      * または，これとslide.texを眺めてください．
+      * 要望があれば，ドキュメントを追加します．
+        ** 要望は，issueか\@kyawawayへお願いします．
+    }
+  >
 
   +section{|セクションスライドの|具体例|}<
 
@@ -114,42 +110,42 @@ document '<
   >
 
     +frame{数式}<
-    +p{
-      数式は \LaTeX; と同様に
-    }
-    +centering{
-      ${E = m c^2}，${F = G \frac{m_1 m_2}{r^2}}， ${x^x = e^{x \log x}}
-    }
-    +p{
-      といった要領で書くことができます.
-    }
-    +code(CodeSyntax.satysfi)
-    (
+      +p{
+        数式は \LaTeX; と同様に
+      }
+      +centering{
+        ${E = m c^2}，${F = G \frac{m_1 m_2}{r^2}}， ${x^x = e^{x \log x}}
+      }
+      +p{
+        といった要領で書くことができます.
+      }
+      +code(CodeSyntax.satysfi)
+      (
 `+centering{
   ${E = m c^2}，${F = G \frac{m_1 m_2}{r^2}}， 
   ${x^x = e^{x \log x}}
 }`
-    );
+      );
     >
     +frame{導出木（`Derive`モジュール）}<
-    +centering{
-      ${
-        \proven!(
-          derive ${ \vdash A \wedge \paren {B \vee C} }
-          |> by { ${\wedge} I }
-          |> from [
-              assume ${ \vdash A };
-              derive ${ \vdash B \vee C }
-              |> by { ${\vee} I }
-              |> from [
-                assume ${ \vdash B };
-              ];
-          ]
-        )
+      +centering{
+        ${
+          \proven!(
+            derive ${ \vdash A \wedge \paren {B \vee C} }
+            |> by { ${\wedge} I }
+            |> from [
+                assume ${ \vdash A };
+                derive ${ \vdash B \vee C }
+                |> by { ${\vee} I }
+                |> from [
+                  assume ${ \vdash B };
+                ];
+            ]
+          )
+        }
       }
-      }
-    +code(CodeSyntax.satysfi)
-    (
+      +code(CodeSyntax.satysfi)
+      (
 `${ \proven!(
   derive ${ \vdash A \wedge \paren {B \vee C} }
   |> by { ${\wedge} I }
@@ -160,53 +156,51 @@ document '<
       |> from [
         assume ${ \vdash B };
       ]; ] }`
-);
+      );
     >
     +frame{hogehoge}<
-    +p{
-      これはテストです。
-      }
-      +quote<>
+      +p{
+        これはテストです。
+        }
+        +quote<>
     >
     +frame{`+block`コマンド}<
-    +p{
-      これはブロックのテストです．
-      }
-    +block?:({これはブロックのテストです．})<
-      +p{中にはblock textが入ります．}
-      >
-    +alertblock?:({\cjk{alert block}})<
-      +centering{${ f = x^2 + 2x + 1}}
-      >
-    +exampleblock?:({example block})<
-      +code(CodeSyntax.satysfi)
-      (
+      +p{
+        これはブロックのテストです．
+        }
+      +block?:({これはブロックのテストです．})<
+        +p{中にはblock textが入ります．}
+        >
+      +alertblock?:({alert block})<
+        +centering{${ f = x^2 + 2x + 1}}
+        >
+      +exampleblock?:({example block})<
+        +code(CodeSyntax.satysfi)
+        (
 `+block?:({これはブロックのテストです．})<
   +code(CodeSyntax.satysfi)(~);
 >`
-      );
+        );
       >
     >
     +frame{定義ブロック}<
-    +p{
-      これは定義ブロックのテストです。
-      }
-    +defn?:({タイトル})<
-      +p{数式も入れられます．}
-      >
-    +thm?:({タイトル})<
-      +p{数式も入れられます．}
-      >
-    +cor?:({タイトル})<
-      +p{数式も入れられます．}
-      >
-    +lem?:({タイトル})<
-      +p{数式も入れられます．}
-      >
-
-
+      +p{
+        これは定義ブロックのテストです。
+        }
+      +defn?:({タイトル})<
+        +p{数式も入れられます．}
+        >
+      +thm?:({タイトル})<
+        +p{数式も入れられます．}
+        >
+      +cor?:({タイトル})<
+        +p{数式も入れられます．}
+        >
+      +lem?:({タイトル})<
+        +p{数式も入れられます．}
+        >
     >
-
-
+  +section{|セクションスライドの|具体例|}<
+  >
 
 >
