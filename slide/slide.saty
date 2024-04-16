@@ -69,12 +69,26 @@ document '<
         * `+p{}`: 段落
         * `+listing{}`: 番号のない箇条書き
         * `+enumerate{}`: 番号付きの箇条書き
+        * `+itemize<>`: 高度な箇条書き
       }
       +p{インラインテキストの中では以下のマークアップが使える：}
       +listing{
         * `\emph{}`: \emph{強調}
         * `\text-color(){}`: \text-color(Color.of-css `#42883B`){文字色変更}
       }
+    >
+    
+    +frame{`+itemize`コマンド}<
+    +p{`+itemize`コマンド内では特殊な箇条書きコマンドが使える：}
+    +itemize<
+      +item{`+thusitem{}<>`:}<
+        +thusitem{これは，`+thusitem`コマンドの例です．}<>
+      >
+      +item{`+okitem{}<>`:}<
+        +okitem{これは，`+okitem`コマンドの例です．}<>
+      >
+      +item{項目3}<>
+    >
     >
 
     +frame{図表の貼り付け（`FigBox` モジュール）}<
