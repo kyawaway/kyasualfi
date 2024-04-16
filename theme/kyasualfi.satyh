@@ -158,14 +158,14 @@ module SlydifiThemeArctic: sig
   direct +code : [CodePrinter.syntax; string] block-cmd
 
 % block
- direct +block : [inline-text?; string?; Colorbox.colorbox-option list?; inline-text] block-cmd
- direct +alertblock : [inline-text?; string?; Colorbox.colorbox-option list?; inline-text] block-cmd
- direct +exampleblock : [inline-text?; string?; Colorbox.colorbox-option list?; inline-text] block-cmd
+ direct +block : [inline-text?; string?; Colorbox.colorbox-option list?; block-text] block-cmd
+ direct +alertblock : [inline-text?; string?; Colorbox.colorbox-option list?; block-text] block-cmd
+ direct +exampleblock : [inline-text?; string?; Colorbox.colorbox-option list?; block-text] block-cmd
 
-  direct +defn : [inline-text?; string?; Colorbox.colorbox-option list?; inline-text] block-cmd
-  direct +thm : [inline-text?; string?; Colorbox.colorbox-option list?; inline-text] block-cmd
-  direct +cor : [inline-text?; string?; Colorbox.colorbox-option list?; inline-text] block-cmd
-  direct +lem : [inline-text?; string?; Colorbox.colorbox-option list?; inline-text] block-cmd
+  direct +defn : [inline-text?; string?; Colorbox.colorbox-option list?; block-text] block-cmd
+  direct +thm : [inline-text?; string?; Colorbox.colorbox-option list?; block-text] block-cmd
+  direct +cor : [inline-text?; string?; Colorbox.colorbox-option list?; block-text] block-cmd
+  direct +lem : [inline-text?; string?; Colorbox.colorbox-option list?; block-text] block-cmd
 
 end = struct
 
@@ -958,7 +958,7 @@ end = struct
       +colorbox 
         (opts)
         ?:(ib-title)
-        <+p{#blk;}>
+        <#blk;>
     >
   
   let-block ctx +block = make-block ctx `#3c372d` `#fffae6` `#fffefa` 
@@ -1003,8 +1003,7 @@ end = struct
       +colorbox 
         (opts)
         ?:(ib-title)
-        %<+p{\font-style[font-size 20pt]{#blk;}}>
-        <+p{#blk;}>
+        <#blk;>
     >
   
   let-block ctx +defn = make-theorem ctx `定義`

@@ -172,32 +172,37 @@ document '<
     +p{
       これはブロックのテストです．
       }
-    +block?:({\cjk{これはブロックのテストです．}}){
-      これはブロックのテストです．
-      }
-    +alertblock?:({\cjk{alert block}}){
-      これはブロックのテストです．
-      }
-    +exampleblock?:({example block}){
-      これはブロックのテストです．
-      }
+    +block?:({これはブロックのテストです．})<
+      +p{中にはblock textが入ります．}
+      >
+    +alertblock?:({\cjk{alert block}})<
+      +centering{${ f = x^2 + 2x + 1}}
+      >
+    +exampleblock?:({example block})<
+      +code(CodeSyntax.satysfi)
+      (
+`+block?:({これはブロックのテストです．})<
+  +code(CodeSyntax.satysfi)(~);
+>`
+      );
+      >
     >
-    +frame{hogehgoe}<
+    +frame{定義ブロック}<
     +p{
       これは定義ブロックのテストです。
       }
-    +defn?:({タイトル}){
-      数式も入れられます．
-      }
-    +thm?:({タイトル}){
-      数式も入れられます．
-      }
-    +cor?:({タイトル}){
-      数式も入れられます．
-      }
-    +lem?:({タイトル}){
-      数式も入れられます．
-      }
+    +defn?:({タイトル})<
+      +p{数式も入れられます．}
+      >
+    +thm?:({タイトル})<
+      +p{数式も入れられます．}
+      >
+    +cor?:({タイトル})<
+      +p{数式も入れられます．}
+      >
+    +lem?:({タイトル})<
+      +p{数式も入れられます．}
+      >
 
 
     >
