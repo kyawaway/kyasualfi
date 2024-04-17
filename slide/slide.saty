@@ -3,7 +3,7 @@
 
 open FigBox
 open SlydifiOverlay
-open SlydifiThemeArctic
+open SlydifiThemeKyasualfi
 open Derive
 open DeriveDSL
 
@@ -144,9 +144,9 @@ document '<
           )
         }
       }
-      +code(CodeSyntax.satysfi)
+      +code?:(0.7)(CodeSyntax.satysfi)
       (
-`${ \proven!(
+`${\proven!(
   derive ${ \vdash A \wedge \paren {B \vee C} }
   |> by { ${\wedge} I }
   |> from [
@@ -155,7 +155,9 @@ document '<
       |> by { ${\vee} I }
       |> from [
         assume ${ \vdash B };
-      ]; ] }`
+      ]; 
+    ] 
+  )}`
       );
     >
     +frame{hogehoge}<

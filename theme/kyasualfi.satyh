@@ -155,7 +155,7 @@ module SlydifiThemeKyasualfi: sig
   direct \footnotemark : [string] inline-cmd
 
 % code
-  direct +code : [CodePrinter.syntax; string] block-cmd
+  direct +code : [float?; CodePrinter.syntax; string] block-cmd
 
 % block
  direct +block : [inline-text?; string?; Colorbox.colorbox-option list?; block-text] block-cmd
@@ -917,9 +917,11 @@ end = struct
 
 %% code 
 
-  let-block ctx +code lang code = 
+  let-block ctx +code ?:ratio lang code = 
     let size = 
-      (get-font-size ctx) *' 0.85
+      match ratio with
+      | None -> (get-font-size ctx) *' 0.85
+      | Some(ratio) -> (get-font-size ctx) *' ratio
     in
     read-block ctx '< 
     +code-printer ?:(
