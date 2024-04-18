@@ -2,7 +2,7 @@ all:
 	satysfi slide/slide.saty
 
 watch:
-	latexmk -pvc *.tex
+	./watch.sh
 
 clean:
 	rm slide/slide.pdf slide/*.satysfi-aux
